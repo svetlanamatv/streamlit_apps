@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+PIL
+st_aggrid
+chembl_webresource_client
+rdkit
+scipy
+plotly
+seaborn
