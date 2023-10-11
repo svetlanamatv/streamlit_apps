@@ -1,7 +1,6 @@
-streamlit
 pandas
 numpy
-PIL
+pillow
 streamlit-aggrid 
 chembl_webresource_client
 rdkit
