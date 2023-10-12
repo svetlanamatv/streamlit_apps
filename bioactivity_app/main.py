@@ -14,13 +14,28 @@ import data_processing as data
 import visualizations as vis
 
 SLEEP_TIME = 1
+APP_DIR = os.getcwd() + "/bioactivity_app/"
+IMAGES_PATH = APP_DIR
+IMAGES_FILE = "images.json"
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-images_path", type=str, default=os.getcwd())
-parser.add_argument("-images_file", type=str, default="images.json")
+parser.add_argument("-images_path", type=str,
+                    default=IMAGES_PATH)
+parser.add_argument("-images_file", type=str,
+                    default=IMAGES_FILE)
 args = parser.parse_args()
 
-IMAGES_FILE_PATH = args.images_path + "/" + args.images_file
+if (args.images_path != IMAGES_PATH
+        or args.images_file != IMAGES_FILE):
+    st.write("args!")
+    IMAGES_PATH = args.images_path
+    IMAGES_FILE = args.images_file
+elif os.environ.get('IMAGES_PATH') or os.environ.get('IMAGES_FILE'):
+    st.write("env!")
+    IMAGES_PATH = os.environ.get('IMAGES_PATH', IMAGES_PATH)
+    IMAGES_FILE = os.environ.get('IMAGES_FILE', IMAGES_FILE)
+
+IMAGES_FILE_PATH = IMAGES_PATH + "/" + IMAGES_FILE
 
 with open(IMAGES_FILE_PATH, "rt") as f:
     json_data = json.load(f)
